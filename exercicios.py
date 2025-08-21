@@ -47,7 +47,19 @@ if log['level'] == 'ERROR':
 # fornecido um email válido. Escreva um programa que valide essas condições 
 # e imprima "Dados de usuário válidos" ou o erro específico encontrado.
 
+idade = 25
+email = 'usuarioteste@gmail.com'
 
+
+if not 18 <= idade <= 65:
+    print("Idade Fora do intervalo")
+
+elif '@' not in email or '.' not in email:
+    print("Email Inválido")
+
+else:
+    print("Dados de usuários válidos")
+    
 
 # Exercício 5: Detecção de Anomalias em Dados de Transações
 # Você está trabalhando em um sistema de detecção de fraude e precisa identificar 
@@ -55,32 +67,161 @@ if log['level'] == 'ERROR':
 # a R$ 10.000 ou se ocorrer fora do horário comercial (antes das 9h ou depois das 18h). 
 # Dada uma transação como `transacao = {'valor': 12000, 'hora': 20}`, verifique se ela é suspeita.
 
+transacao = {
+    'valor' : 12000,
+    'hora'  : 20
+}
+
+if transacao['valor'] > 10000 or transacao['hora'] < 9 or transacao['hora'] > 18:
+    print("Transação Suspeita!")
+
+else:
+    print("Transação Normal!")
+
 # Exercício 6. Contagem de Palavras em Textos
 # Objetivo:** Dado um texto, contar quantas vezes cada palavra única aparece nele.
+
+texto = "Nada é suficiente para quem considera pouco o suficiente"
+
+palavras = texto.split(" ")
+
+print(palavras)
+
+contagem_de_palavras = {}
+
+for palavra in palavras:
+    if palavra in contagem_de_palavras:
+        contagem_de_palavras[palavra] = +1
+    else:
+        contagem_de_palavras[palavra] = 1
+
+print(contagem_de_palavras)
 
 # Exercício 7. Normalização de Dados
 # Objetivo:** Normalizar uma lista de números para que fiquem na escala de 0 a 1.
 
+numeros = [15, 25, 35, 45, 55]
+
+minimo = min(numeros)
+maximo = max(numeros)
+
+normalizado = [(x - minimo) / (maximo - minimo) for x in numeros]
+
+print(normalizado)
+
 # Exercício 8. Filtragem de Dados Faltantes
 # Objetivo:** Dada uma lista de dicionários representando dados de usuários, filtrar aqueles que têm um campo específico faltando
+
+usuarios = [
+    {"nome": "Roberta", "email": "roberta@example.com"},
+    {"nome": "Jorge", "email": ""},
+    {"nome": "Rodrigo", "email": "rodrigo@example.com"}
+]
+
+usuarios_validos = []
+
+for usuario in usuarios:
+    if usuario["email"]:
+        usuarios_validos.append(usuario)
+
+print(usuarios_validos)
 
 # Exercício 9. Extração de Subconjuntos de Dados
 # Objetivo:** Dada uma lista de números, extrair apenas aqueles que são pares.
 
+lista_numeros = [1, 12, 20, 25, 58, 18, 90]
+
+lista_pares = []
+
+for numeros in lista_numeros:
+    if numeros % 2 == 0:
+        lista_pares.append(numeros)
+
+print(lista_pares)
+
 # Exercício 10. Agregação de Dados por Categoria
 # Objetivo:** Dado um conjunto de registros de vendas, calcular o total de vendas por categoria.
+
+vendas = [
+    {"categoria": "eletrônicos", "valor": 3000},
+    {"categoria": "livros", "valor": 500},
+    {"categoria": "eletrônicos", "valor": 1200}
+]
+
+total_categoria = {}
+
+for venda in vendas:
+    categoria = venda["categoria"]
+    valor     = venda["valor"]
+
+    if categoria in total_categoria:
+        total_categoria[categoria] += valor 
+    else:
+        total_categoria[categoria] = valor
+
+print(total_categoria)
 
 # Exercício 11. Leitura de Dados até Flag
 # Ler dados de entrada até que uma palavra-chave específica ("sair") seja fornecida.
 
+dados = []
+
+entrada = ""
+
+while entrada.lower() != "sair":
+    entrada = input("Digite um valor (ou 'sair' para terminar): ")
+
 # Exercício 12. Validação de Entrada
 # Solicitar ao usuário um número dentro de um intervalo específico até que a entrada seja válida.
+
+numero = int(input("Digite um numero entre 1 e 10: "))
+
+while numero < 1 or numero > 10:
+    numero = int(input("Digite um valor válido: "))
+    
 
 # Exercício 13. Consumo de API Simulado
 # Simular o consumo de uma API paginada, onde cada "página" de dados é processada em loop até que não haja mais páginas.
 
+pagina_atual  = 1
+total_paginas = 10
+
+while pagina_atual <= total_paginas:
+    print(f"Processando página {pagina_atual} de {total_paginas}")
+
+    pagina_atual += 1
+
+print("Todas as páginas foram processadas")
+
 # Exercício 14. Tentativas de Conexão
 # Simular tentativas de reconexão a um serviço com um limite máximo de tentativas.
 
+tentativa_atual  = 1
+limite_tentativa = 5
+
+while tentativa_atual <= limite_tentativa:
+    print(f"Tentativa de reconexão {tentativa_atual} de um limite de tentativas {limite_tentativa}")
+
+    if False:
+        print("Conexão sucedida!")
+        break
+    
+    tentativa_atual += 1
+
+else:
+    print("Limite máximo de tentativas excedido!")
+
 # Exercício 15. Processamento de Dados com Condição de Parada
 # Processar itens de uma lista até encontrar um valor específico que indica a parada.
+
+itens = [1, 2, 3, "parar", 4, 5]
+
+i = 0 
+
+while i < len(itens):
+    if itens[i] == 'parar':
+        print("Parada Encontrada, encerrando o processamento!")
+        break
+    print(f"Processando item: {itens[1]}")
+
+    i += 1
